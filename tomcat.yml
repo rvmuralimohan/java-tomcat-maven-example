@@ -1,0 +1,9 @@
+--- 
+- hosts: all
+  become: yes
+  tasks:
+    - name: download the file
+      get_url: name=http://10.0.0.10:8080/jenkins/job/tomcat_war/lastSuccessfulBuild/artifact/target/java-tomcat-maven-example.war dest=/tmp/java-tomcat-maven-example.war
+
+    - name: copy fails to webapps director 
+      copy: src=/tmp/java-tomcat-maven-example.war dest=/opt/tomcat/webapps/
